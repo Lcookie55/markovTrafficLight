@@ -1,0 +1,28 @@
+grid: 100 runs in 1.8s
+scn controller       avg wait (s)    mean queue    throughput/h  switches
+S1  mdp               11.0 ±  0.1      4.4± 0.1       1445±  23      139
+S1  mdp_nominal       11.0 ±  0.1      4.4± 0.1       1445±  23      139
+S1  fixed             15.8 ±  0.3      6.4± 0.2       1441±  24      102
+S1  lqf                9.7 ±  0.3      3.9± 0.1       1445±  24      209
+S2  mdp               26.2 ±  0.6     26.3± 0.8       3581±  22       72
+S2  mdp_nominal       26.2 ±  0.6     26.3± 0.8       3581±  22       72
+S2  fixed             23.4 ±  0.9     23.4± 1.0       3587±  27      102
+S2  lqf               93.3 ± 14.4     93.6±15.1       3474±  15      224
+S3  mdp               12.5 ±  0.5      9.5± 0.4       2746±  36      112
+S3  mdp_nominal       12.5 ±  0.5      9.5± 0.4       2746±  36      112
+S3  fixed             65.9 ± 11.9     50.6± 9.7       2704±  20      102
+S3  lqf               12.6 ±  0.4      9.7± 0.4       2747±  35      173
+S4  mdp               12.5 ±  0.2      9.4± 0.2       2705±  27      114
+S4  mdp_nominal       12.6 ±  0.3      9.5± 0.3       2705±  27      114
+S4  fixed             42.8 ±  4.8     32.3± 3.7       2670±  23      102
+S4  lqf               12.6 ±  0.3      9.5± 0.3       2704±  27      175
+S5  mdp               31.8 ±  5.7     18.2± 3.5       2042±  39      121
+S5  mdp_nominal       31.8 ±  5.7     18.2± 3.5       2042±  39      121
+S5  fixed             41.8 ±  6.0     23.8± 3.8       2038±  39      102
+S5  lqf               76.0 ±  9.2     43.3± 6.0       2042±  40      213
+model-vs-sim S1: weighted TV = 0.357 (queue+phase part 0.288, elapsed part 0.219; 32 (s,a) pairs, 3513 transitions)
+model-vs-sim S2: weighted TV = 0.550 (queue+phase part 0.539, elapsed part 0.088; 18 (s,a) pairs, 3450 transitions)
+model-vs-sim S3: weighted TV = 0.442 (queue+phase part 0.399, elapsed part 0.123; 30 (s,a) pairs, 3406 transitions)
+model-vs-sim S4: weighted TV = 0.438 (queue+phase part 0.397, elapsed part 0.138; 31 (s,a) pairs, 3423 transitions)
+model-vs-sim S5: weighted TV = 0.468 (queue+phase part 0.406, elapsed part 0.175; 31 (s,a) pairs, 3340 transitions)
+q-learning vs VI: {'free_states': 32, 'agree_unweighted': 0.875, 'agree_weighted': 0.6852648156995983, 'episodes': 600, 'seconds': 4.7, 'avg_wait_by_policy': {'S2_value_iteration_avg_wait_s': 26.239451173748552, 'S2_q_learning_avg_wait_s': 18.79707673967056, 'S3_value_iteration_avg_wait_s': 12.465419279794387, 'S3_q_learning_avg_wait_s': 11.85222994805693, 'S5_value_iteration_avg_wait_s': 31.843820215727327, 'S5_q_learning_avg_wait_s': 29.36562441399559}}

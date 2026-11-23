@@ -1,0 +1,42 @@
+[
+ {
+  "scenario": "S1",
+  "weighted_tv": 0.3567284635830363,
+  "tv_queue_and_phase_only": 0.2880886552956539,
+  "tv_elapsed_only": 0.21935667520637636,
+  "pairs_compared": 32,
+  "transitions": 3513
+ },
+ {
+  "scenario": "S2",
+  "weighted_tv": 0.5502958746114042,
+  "tv_queue_and_phase_only": 0.5388293084603634,
+  "tv_elapsed_only": 0.08840579710144929,
+  "pairs_compared": 18,
+  "transitions": 3450
+ },
+ {
+  "scenario": "S3",
+  "weighted_tv": 0.4418335113387583,
+  "tv_queue_and_phase_only": 0.39872397611122196,
+  "tv_elapsed_only": 0.12316500293599533,
+  "pairs_compared": 30,
+  "transitions": 3406
+ },
+ {
+  "scenario": "S4",
+  "weighted_tv": 0.43843688579855705,
+  "tv_queue_and_phase_only": 0.3967097552692468,
+  "tv_elapsed_only": 0.13777388255915865,
+  "pairs_compared": 31,
+  "transitions": 3423
+ },
+ {
+  "scenario": "S5",
+  "weighted_tv": 0.46779400455162556,
+  "tv_queue_and_phase_only": 0.4060402188541534,
+  "tv_elapsed_only": 0.1753293413173653,
+  "pairs_compared": 31,
+  "transitions": 3340
+ }
+]

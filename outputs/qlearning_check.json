@@ -1,0 +1,15 @@
+{
+ "free_states": 32,
+ "agree_unweighted": 0.875,
+ "agree_weighted": 0.6852648156995983,
+ "episodes": 600,
+ "seconds": 4.7,
+ "avg_wait_by_policy": {
+  "S2_value_iteration_avg_wait_s": 26.239451173748552,
+  "S2_q_learning_avg_wait_s": 18.79707673967056,
+  "S3_value_iteration_avg_wait_s": 12.465419279794387,
+  "S3_q_learning_avg_wait_s": 11.85222994805693,
+  "S5_value_iteration_avg_wait_s": 31.843820215727327,
+  "S5_q_learning_avg_wait_s": 29.36562441399559
+ }
+}

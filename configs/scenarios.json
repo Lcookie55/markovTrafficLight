@@ -1,0 +1,57 @@
+{
+  "defaults": {
+    "dt": 5,
+    "g_min": 10,
+    "g_max": 60,
+    "t_yellow": 3,
+    "t_allred": 1,
+    "mu": 0.5,
+    "lanes": 1.4,
+    "gamma": 0.95,
+    "c_switch": 2.0,
+    "q_max": 12,
+    "eps": 0.0001,
+    "horizon": 3600,
+    "fixed_green": 30,
+    "nominal_lambda": 0.2,
+    "seeds": [1, 2, 3, 4, 5]
+  },
+  "scenarios": [
+    {
+      "id": "S1",
+      "name": "Balanced, low demand",
+      "description": "Off-peak conditions with equal load on both axes",
+      "lam_ns": 0.10,
+      "lam_ew": 0.10
+    },
+    {
+      "id": "S2",
+      "name": "Balanced, peak demand",
+      "description": "Rush-hour conditions, heavy but symmetric load",
+      "lam_ns": 0.25,
+      "lam_ew": 0.25
+    },
+    {
+      "id": "S3",
+      "name": "Asymmetric, NS-heavy",
+      "description": "North-South corridor dominates (e.g., morning inbound flow)",
+      "lam_ns": 0.30,
+      "lam_ew": 0.08
+    },
+    {
+      "id": "S4",
+      "name": "Asymmetric, EW-heavy",
+      "description": "East-West corridor dominates (e.g., evening outbound flow)",
+      "lam_ns": 0.08,
+      "lam_ew": 0.30
+    },
+    {
+      "id": "S5",
+      "name": "Surge",
+      "description": "Temporary demand surge on both axes for 600 s in the middle of the run",
+      "lam_ns": 0.10,
+      "lam_ew": 0.10,
+      "surge": {"start": 1500, "end": 2100, "lam": 0.35}
+    }
+  ]
+}
