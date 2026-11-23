@@ -39,22 +39,37 @@ if __name__ == "__main__":
     (OUTPUT_DIR / "model_vs_sim.json").write_text(json.dumps(comp, indent=1))
 
     # Q-learning vs value iteration
+    from mtl.controllers import MDPController
+    from mtl.runner import run_episode
     lam = cfg.nominal_lambda
     vi = solve(cfg, lam, lam)[1]
     t0 = time.time()
-    ql, visits = q_learning(cfg, lam, lam, episodes=600, episode_len=1800, seed=0)
-    agr = policy_agreement(ql.policy, vi.policy, visits)
-    agr["episodes"] = 600
-    agr["seconds"] = round(time.time() - t0, 1)
-    # performance of the learned vs the DP policy on the real simulator
-    from mtl.controllers import MDPController
-    from mtl.runner import run_episode
+    TRAIN_SEEDS = (0, 1, 2, 3, 4)          # independent Q-learning training runs
+    unw, wtd, perf_runs = [], [], {}
+    for ts in TRAIN_SEEDS:
+        ql, visits = q_learning(cfg, lam, lam, episodes=600, episode_len=1800, seed=ts)
+        a = policy_agreement(ql.policy, vi.policy, visits)
+        unw.append(a["agree_unweighted"])
+        wtd.append(a["agree_weighted"])
+        for sid in ("S2", "S3", "S5"):
+            perf_runs.setdefault(f"{sid}_q_learning", []).append(float(np.mean([
+                run_episode(cfg, scenarios[sid], sd, MDPController(ql.policy))["avg_wait_s"]
+                for sd in cfg.seeds])))
+    agr = {"free_states": 32, "episodes": 600, "training_seeds": len(TRAIN_SEEDS),
+           "agree_unweighted": float(np.mean(unw)), "agree_unweighted_std": float(np.std(unw)),
+           "agree_weighted": float(np.mean(wtd)), "agree_weighted_std": float(np.std(wtd)),
+           "seconds": round(time.time() - t0, 1)}
+    # performance of the learned vs the DP policy on the real simulator (seeds 1-5)
     perf = {}
     for sid in ("S2", "S3", "S5"):
-        for name, pol in (("value_iteration", vi.policy), ("q_learning", ql.policy)):
-            perf[f"{sid}_{name}_avg_wait_s"] = float(np.mean([
-                run_episode(cfg, scenarios[sid], sd, MDPController(pol))["avg_wait_s"]
-                for sd in cfg.seeds]))
+        perf[f"{sid}_value_iteration_avg_wait_s"] = float(np.mean([
+            run_episode(cfg, scenarios[sid], sd, MDPController(vi.policy))["avg_wait_s"]
+            for sd in cfg.seeds]))
+        runs = perf_runs[f"{sid}_q_learning"]
+        perf[f"{sid}_q_learning_avg_wait_s"] = float(np.mean(runs))
+        perf[f"{sid}_q_learning_avg_wait_s_std"] = float(np.std(runs))
+        perf[f"{sid}_q_learning_avg_wait_s_min"] = float(np.min(runs))
+        perf[f"{sid}_q_learning_avg_wait_s_max"] = float(np.max(runs))
     agr["avg_wait_by_policy"] = perf
     (OUTPUT_DIR / "qlearning_check.json").write_text(json.dumps(agr, indent=1))
     print("q-learning vs VI:", agr)

@@ -145,9 +145,10 @@ axs[0].set_title("Convergence of Value Iteration", fontsize=10)
 perf = q_check["avg_wait_by_policy"]
 x = np.arange(3)
 for i, (name, lab, col) in enumerate([("value_iteration", "Value Iteration (DP)", "#2f6fed"),
-                                      ("q_learning", "Q-Learning (simulator)", "#12a594")]):
+                                      ("q_learning", "Q-Learning (mean of 5 runs)", "#12a594")]):
+    err = [perf.get(f"{s}_{name}_avg_wait_s_std", 0.0) for s in ("S2", "S3", "S5")]
     axs[1].bar(x + (i - .5) * .38, [perf[f"{s}_{name}_avg_wait_s"] for s in ("S2", "S3", "S5")], .38,
-               color=col, label=lab)
+               yerr=err if any(err) else None, capsize=3, error_kw={"lw": .9}, color=col, label=lab)
 axs[1].set_xticks(x, ["S2", "S3", "S5"])
 axs[1].set_ylabel("Average waiting time (s)")
 axs[1].set_title("DP policy vs model-free policy", fontsize=10)

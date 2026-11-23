@@ -29,7 +29,8 @@ def q_learning(cfg: Config, lam_ns: float, lam_ew: float, episodes: int = 400,
     history = []
     for ep in range(episodes):
         eps = max(eps_end, eps_start * (1 - ep / max(1, episodes * 0.8)))
-        env = Intersection(cfg, ArrivalStream(seed * 100003 + ep, episode_len), rate_fn)
+        # training streams are disjoint from the evaluation seeds (cfg.seeds = 1..5)
+        env = Intersection(cfg, ArrivalStream(1_000_000 + seed * 100003 + ep, episode_len), rate_fn)
         obs = env.observe()
         ret = 0.0
         while env.t + cfg.dt <= episode_len:

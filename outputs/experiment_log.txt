@@ -1,4 +1,4 @@
-grid: 100 runs in 1.8s
+grid: 100 runs in 1.0s
 scn controller       avg wait (s)    mean queue    throughput/h  switches
 S1  mdp               11.0 ±  0.1      4.4± 0.1       1445±  23      139
 S1  mdp_nominal       11.0 ±  0.1      4.4± 0.1       1445±  23      139
@@ -25,4 +25,4 @@ model-vs-sim S2: weighted TV = 0.550 (queue+phase part 0.539, elapsed part 0.088
 model-vs-sim S3: weighted TV = 0.442 (queue+phase part 0.399, elapsed part 0.123; 30 (s,a) pairs, 3406 transitions)
 model-vs-sim S4: weighted TV = 0.438 (queue+phase part 0.397, elapsed part 0.138; 31 (s,a) pairs, 3423 transitions)
 model-vs-sim S5: weighted TV = 0.468 (queue+phase part 0.406, elapsed part 0.175; 31 (s,a) pairs, 3340 transitions)
-q-learning vs VI: {'free_states': 32, 'agree_unweighted': 0.875, 'agree_weighted': 0.6852648156995983, 'episodes': 600, 'seconds': 4.7, 'avg_wait_by_policy': {'S2_value_iteration_avg_wait_s': 26.239451173748552, 'S2_q_learning_avg_wait_s': 18.79707673967056, 'S3_value_iteration_avg_wait_s': 12.465419279794387, 'S3_q_learning_avg_wait_s': 11.85222994805693, 'S5_value_iteration_avg_wait_s': 31.843820215727327, 'S5_q_learning_avg_wait_s': 29.36562441399559}}
+q-learning vs VI: {'free_states': 32, 'episodes': 600, 'training_seeds': 5, 'agree_unweighted': 0.825, 'agree_unweighted_std': 0.0318688719599549, 'agree_weighted': 0.6950575711411744, 'agree_weighted_std': 0.022590441940309444, 'seconds': 17.9, 'avg_wait_by_policy': {'S2_value_iteration_avg_wait_s': 26.239451173748552, 'S2_q_learning_avg_wait_s': 19.840468812496148, 'S2_q_learning_avg_wait_s_std': 2.0867841456511824, 'S2_q_learning_avg_wait_s_min': 18.79707673967056, 'S2_q_learning_avg_wait_s_max': 24.014037103798515, 'S3_value_iteration_avg_wait_s': 12.465419279794387, 'S3_q_learning_avg_wait_s': 12.090708035965289, 'S3_q_learning_avg_wait_s_std': 0.378970032049717, 'S3_q_learning_avg_wait_s_min': 11.68302665395856, 'S3_q_learning_avg_wait_s_max': 12.790440869751231, 'S5_value_iteration_avg_wait_s': 31.843820215727327, 'S5_q_learning_avg_wait_s': 29.73679959598595, 'S5_q_learning_avg_wait_s_std': 0.4830277749838984, 'S5_q_learning_avg_wait_s_min': 29.33517050501964, 'S5_q_learning_avg_wait_s_max': 30.468932953795786}}
